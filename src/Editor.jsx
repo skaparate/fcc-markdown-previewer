@@ -1,45 +1,34 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from 'react';
+import EditorToolbar from './EditorToolbar';
 
 class Editor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      input: ""
+      selection: ''
     };
 
-    this.onEditorChange = this.onEditorChange.bind(this);
+    this.handleTextareaMouseUp = this.handleTextareaMouseUp.bind(this);
   }
 
-  onEditorChange(event) {
-    this.setState({
-      input: event.target.value
-    });
+  handleTextareaMouseUp(event) {
+    const target = event.target;
+    const selection = target.value.substring(target.selectionStart, target.selectionEnd);
+    console.debug('Selection:', selection);
   }
 
   render() {
     return (
       <div className="editor-wrapper">
         <div className="editor--toolbar">
-          <nav className="navbar">
-            <ul>
-              <li>
-                <button
-                  className="editor--toolbar-button button is-light"
-                  type="button"
-                >
-                  <FontAwesomeIcon icon="link" />
-                  <span className="is-sr-only">Insert Link</span>
-                </button>
-              </li>
-            </ul>
-          </nav>
+          <EditorToolbar selection={this.state.selection} />
         </div>
         <textarea
           id="editor"
           className="textarea"
-          value={this.state.input}
-          onChange={this.onEditorChange}
+          value={this.props.input}
+          onChange={this.props.onChange}
+          onMouseUp={this.handleTextareaMouseUp}
         />
       </div>
     );
