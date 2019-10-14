@@ -143,7 +143,7 @@ The preview is where You can see the ouput of the editor (the parsed content).`;
         </Nav>
         <Container fluid="true">
           <Row>
-            <Col>
+            <Col md={12} lg={6} className="mb-2">
               <Card className={editorCardClasses}>
                 <Card.Header>Editor</Card.Header>
                 <Card.Body className="p-0">
@@ -156,7 +156,7 @@ The preview is where You can see the ouput of the editor (the parsed content).`;
                 </Card.Body>
               </Card>
             </Col>
-            <Col>
+            <Col md={12} lg={6}>
               <Card>
                 <Card.Header>Preview</Card.Header>
                 <Card.Body>
